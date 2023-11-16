@@ -1,0 +1,31 @@
+import os
+from gavel import gavel_art  # Highlighted line: Import the ASCII art from gavel.py
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# Print the ASCII art from gavel.py
+print(gavel_art)
+
+print("Welcome to the secret auction program.")
+
+bidders = []
+
+while True:
+    name = input("What is your name?: ")
+    bid = float(input("What's your bid?: $"))
+    
+    bidders.append({"name": name, "bid": bid})
+    
+    another_bidder = input("Are there any other bidders? Type 'yes' or 'no': ").lower()
+    
+    if another_bidder != 'yes':
+        break
+    
+    clear_screen()
+
+# Find the winner
+winner = max(bidders, key=lambda x: x["bid"])
+
+clear_screen()
+print(f"The winner is {winner['name']} with a bid of ${winner['bid']}.")
